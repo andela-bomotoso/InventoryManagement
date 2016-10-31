@@ -7,4 +7,8 @@
     <string name="name">Item name</string>
     <string name="category">Item category</string>
     <string name="price">Item price</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="empty_username_password">Username or password is empty</string>
+    <string name="user_already_exist">User already exist</string>
 </resources>
