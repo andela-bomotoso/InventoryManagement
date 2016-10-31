@@ -10,6 +10,7 @@ import android.net.Uri;
 
 public class InventoryProvider extends ContentProvider {
     public InventoryProvider() {
+
     }
 
     private InventoryDbHelper inventoryDbHelper;
@@ -17,7 +18,7 @@ public class InventoryProvider extends ContentProvider {
     private static final int STOCK_ID = 101;
     private static final UriMatcher uriMatcher = new UriMatcher((UriMatcher.NO_MATCH));
     static  {
-        uriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_STOCKS+"#",STOCK_ID);
+        uriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_STOCKS, STOCKS);
     }
 
     @Override
@@ -35,8 +36,20 @@ public class InventoryProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        SQLiteDatabase database = inventoryDbHelper.getWritableDatabase();
+
+        final int match = uriMatcher.match(uri);
+        switch (match)  {
+            case STOCKS:
+              long id =  database.insert(InventoryContract.InventoryEntry.TABLE_NAME,null,values);
+
+                getContext().getContentResolver().notifyChange(uri,null);
+                return ContentUris.withAppendedId(uri,id);
+            default:
+                throw new UnsupportedOperationException("Not yet implemented");
+
+        }
         // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override

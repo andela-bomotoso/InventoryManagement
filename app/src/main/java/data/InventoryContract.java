@@ -10,7 +10,7 @@ public final class InventoryContract {
 
     public static  final String CONTENT_AUTHORITY = "com.example.bukola_omotoso.inventorymanagement";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    public static final String PATH_STOCKS = "stocks";
+    public static final String PATH_STOCKS = "stock";
 
 
     public InventoryContract()  {
