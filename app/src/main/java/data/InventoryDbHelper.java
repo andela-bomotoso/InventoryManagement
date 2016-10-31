@@ -16,6 +16,12 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String SQL_CREATE_STOCK_TABLE = "CREATE TABLE "+ InventoryContract.TABLE_NAME + "("
+                + InventoryContract._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                InventoryContract.Column_ITEM_NAME + "TEXT NOT NULL," +
+                InventoryContract.Column_ITEM_PRICE + "REAL," +
+                InventoryContract.Column_ITEM_CATEGORY + "TEXT);";
+        sqLiteDatabase.execSQL(SQL_CREATE_STOCK_TABLE);
 
     }
 
@@ -23,4 +29,5 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
 }

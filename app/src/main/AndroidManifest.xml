@@ -18,7 +18,13 @@
         <activity
             android:name=".StockActivity"
             android:label="@string/title_activity_stock"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name="data.InventoryProvider"
+            android:authorities="com.example.bukola_omotoso.inventorymanagement"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>
