@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private String USERNAME = "USERNAME";
+    private String PASSWORD = "PASSWORD";
     private EditText userNameEdit;
     private EditText passwordEdit;
     private Button signIn;
@@ -40,18 +42,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn() {
-        String username = userNameEdit.getText().toString();
-        String password = userNameEdit.getText().toString();
 
         validateAndLogin();
     }
 
     public void signUp() {
         String username = userNameEdit.getText().toString();
-        String password = userNameEdit.getText().toString();
+        String password = passwordEdit.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("LOGIN", MODE_PRIVATE);
-        sharedPreferences.edit().putString("USER_NAME", username).apply();
-        sharedPreferences.edit().putString("PASSWORD", password).apply();
+        sharedPreferences.edit().putString(USERNAME, username).apply();
+        sharedPreferences.edit().putString(PASSWORD, password).apply();
         if (!username.isEmpty() && !password.isEmpty()) {
             startActivity(new Intent(MainActivity.this, StockActivity.class));
         } else {
@@ -66,25 +66,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void validateAndLogin() {
         String username = userNameEdit.getText().toString();
-        String password = userNameEdit.getText().toString();
+        String password = passwordEdit.getText().toString();
 
         if (!(username.isEmpty() && password.isEmpty())) {
             SharedPreferences preferences = getSharedPreferences("LOGIN", MODE_PRIVATE);
-            if (username.equals(preferences.getString("USER_NAME", ""))
-                    && password.equals(preferences.getString("PASSWORD", ""))) {
+            if (username.equals(preferences.getString(USERNAME, ""))
+                    && password.equals(preferences.getString(PASSWORD, ""))) {
                 startActivity(new Intent(MainActivity.this, StockActivity.class));
             } else {
-                Toast.makeText(this, "User not available in database", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.user_does_not_exist), Toast.LENGTH_LONG).show();
             }
         }
     }
 
     private boolean userAlreadyExist() {
         String username = userNameEdit.getText().toString();
-        String password = userNameEdit.getText().toString();
+        String password = passwordEdit.getText().toString();
         SharedPreferences preferences = getSharedPreferences("LOGIN", MODE_PRIVATE);
-        if (username.equals(preferences.getString("USER_NAME", ""))
-                && password.equals(preferences.getString("PASSWORD", ""))) {
+        if (username.equals(preferences.getString(USERNAME, ""))
+                && password.equals(preferences.getString(PASSWORD, ""))) {
             return true;
         }
 

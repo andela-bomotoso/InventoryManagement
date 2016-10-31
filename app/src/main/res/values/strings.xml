@@ -11,4 +11,5 @@
     <string name="password">password</string>
     <string name="empty_username_password">Username or password is empty</string>
     <string name="user_already_exist">User already exist</string>
+    <string name="user_does_not_exist">User does not exist</string>
 </resources>
